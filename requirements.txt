@@ -1,0 +1,6 @@
+# the model, CPU only: the rate model, the slow layer, the numpy spiking network, body and neurochemistry
+numpy>=1.26
+scipy>=1.11
+# optional, for the PyTorch spiking network (spiking/net.py, memory, Pong, the choice task) and the slow-layer fitting:
+#   pip install -r requirements-torch.txt
+# optional, to rebuild the data files from the raw MRI: pip install -r requirements-pipeline.txt

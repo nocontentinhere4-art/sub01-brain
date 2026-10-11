@@ -1,0 +1,4 @@
+# the PyTorch spiking network (spiking/net.py, plasticity, memory, pong, choice, session) and twin/hopf.py fitting.
+# CPU wheel: pip install torch --index-url https://download.pytorch.org/whl/cpu   (a GPU build works the same)
+torch>=2.2
+aiohttp>=3.9     # only for spiking/session.py's optional websocket link to a server; the model never needs it

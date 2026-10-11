@@ -1,0 +1,16 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/   (legal code: https://creativecommons.org/licenses/by/4.0/legalcode)
+
+The files in this directory (data/receptors/) are group post-mortem receptor-density data from other people, not the
+scanned person's:
+
+- zilles2017_all_layers.csv: Zilles K, Palomero-Gallagher N (2017) Multiple transmitter receptors in regions and layers
+  of the human cerebral cortex. Frontiers in Neuroanatomy 11:78, doi:10.3389/fnana.2017.00078, (c) 2017 Zilles and
+  Palomero-Gallagher, Creative Commons Attribution License (CC BY). Supplementary Table 2, extracted unchanged, plus our
+  approximate MNI centroid per area. Table mirrored from https://github.com/AlGoulas/receptor_principles (MIT,
+  Copyright (c) 2020 AlGoulas).
+- receptors_214.csv: an adaptation of the above: 7 receptors mapped onto the 200 Schaefer parcels by inverse-distance
+  weighting (pipeline/build_receptors.py); subcortical rows left blank. Parcel centroids (c) 2016 Computational Brain
+  Imaging Group (CBIG), MIT License, https://github.com/ThomasYeoLab/CBIG.
+
+RECEPTORS_SOURCES.md records the sources that were looked at and not used (non-commercial or unclear licences).

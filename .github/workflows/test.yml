@@ -1,0 +1,56 @@
+name: tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # 214 x 214 matrices: more BLAS threads only spin
+  OPENBLAS_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  cpu:
+    # numpy + scipy only: the rate model, the slow layer, the numpy spiking network, body, neurochemistry, the demo
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      matrix:
+        python: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - run: pip install -r requirements.txt pytest
+      - run: python -m pytest -q
+      - run: python -m sub01_brain.demo --quick
+
+  torch:
+    # the PyTorch spiking network (CPU wheel). Informative for now: the owner may make it blocking once it has run green.
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-torch.txt
+      - run: pip install -r requirements.txt pytest
+      - run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pytest -q tests/test_spiking_model.py tests/test_spiking_choice.py tests/test_spiking_readout.py tests/test_real_wiring.py tests/test_spiking_live.py

@@ -1,0 +1,9 @@
+# rebuilding data/ from the raw MRI (pipeline/README.md): tractography, atlas registration, resting-state processing
+dipy==1.12.1
+nilearn==0.14.1
+nibabel
+numpy
+scipy
+netneurotools    # pipeline/real_wiring.py: the randomised-wiring nulls (BSD-3)
+torch            # pipeline/real_wiring.py: batched fitting of the slow layer
+matplotlib       # the report figures

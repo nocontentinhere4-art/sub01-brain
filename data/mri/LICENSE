@@ -1,0 +1,27 @@
+Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/   (legal code: https://creativecommons.org/licenses/by-sa/4.0/legalcode)
+
+Every file in this directory (data/mri/) is derived from one person's public MRI scans, processed with the atlases
+and templates listed in NOTICE.md at the repository root:
+
+- the scans: the MyConnectome dataset, OpenNeuro ds000031, https://openneuro.org/datasets/ds000031, licence CC0
+  (PDDL on the legacy OpenfMRI record). Required acknowledgement: "Data for the MyConnectome project were obtained
+  from the OpenNeuro database (ds000031)"; also cite Poldrack et al. (2015), Long-term neural and physiological
+  phenotyping of a single human, Nature Communications 6:8885, doi:10.1038/ncomms9885;
+- Schaefer-200 parcellation, (c) 2016 Computational Brain Imaging Group (CBIG), MIT License;
+- Harvard-Oxford subcortical structural atlas, distributed with FSL under CC BY-SA 4.0: t1/labels_t1.nii.gz is an
+  adaptation of it, which is why this whole bundle is offered under CC BY-SA 4.0;
+- ICBM 152 2009c template (the brain mask): Copyright (C) 1993-2004 Louis Collins, McConnell Brain Imaging Centre,
+  Montreal Neurological Institute, McGill University; permission to use, copy, modify and distribute granted provided
+  the copyright notice appears in all copies.
+
+Changes made by the SUB-01 project: tractography and a 214-region connectivity matrix (connectome.npz, connectome_v2.npz),
+atlas warped into the subject's anatomy (t1/labels_t1.nii.gz, atlas_names.json, region_volumes.json), skull-stripping and
+resampling (t1/t1_brain_1mm.nii.gz, t1/brainmask_t1.nii.gz, t1/t1_to_dwi.npy), parcel-mean band-passed z-scored
+resting-state time series (rest/*.npz, rest/qc.json), and a Hopf model fitted on half of those runs (slow_layer.npz).
+
+The scanned person is anonymous and stays so: nothing in these files identifies them (no face, no skull, no name, no
+demographics), and this repository must not add any name, link or metadata about them. The attribution above is the one
+the dataset record requires; add nothing to it.
+
+If you share these files or derivatives, keep this notice and license them under CC BY-SA 4.0 (or a compatible licence).

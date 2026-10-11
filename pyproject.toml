@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sub01-brain"
+version = "0.1.0"
+description = "The brain model of SUB-01, a fictional simulated character: a rate/Hopf model and spiking networks on one real public connectome. A model, not a mind."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26", "scipy>=1.11"]
+
+[project.optional-dependencies]
+torch = ["torch>=2.2", "aiohttp>=3.9"]
+test = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+include = ["sub01_brain*"]
+
+# The data files stay in data/ next to the package (23 MB; data/DATA.md). An installed copy finds them through the
+# SUB01_BRAIN_DATA environment variable (sub01_brain/paths.py); a checkout needs nothing.
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:cacheprovider"

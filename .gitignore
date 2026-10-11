@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+build/
+dist/
+# learned weights and snapshots written by the demo / the day network (python -m sub01_brain.spiking.live --data-dir state)
+state/
+# the MRI pipeline's downloads and working directory (pipeline/README.md)
+raw/
+out/
+data/analysis/
+data/cache/
+.DS_Store
