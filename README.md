@@ -62,16 +62,25 @@ tests/                       python -m pytest -q  (torch tests skip without torc
 Python 3.10+, CPU only, two dependencies:
 
 ```bash
-git clone <this repo> && cd sub01-brain
-python -m venv .venv && . .venv/bin/activate
-pip install -r requirements.txt            # numpy, scipy
-python -m sub01_brain.demo                 # ~10-40 s
+pip install git+https://github.com/nocontentinhere4-art/sub01-brain
+python -m sub01_brain.demo                 # ~10-40 s on one CPU core
 ```
 
-Optional: `pip install -r requirements-torch.txt` (or `pip install torch --index-url https://download.pytorch.org/whl/cpu`)
-for the PyTorch network, the memory / Pong / choice-task code and the slow-layer fitting; `pip install -e .` to import
-the package from anywhere (the data stays in `data/`; set `SUB01_BRAIN_DATA=/path/to/data` if the checkout moves);
-`requirements-pipeline.txt` to rebuild the data from the raw MRI.
+That is the whole install: numpy, scipy and the 23 MB of derived data come with the package. In your own code:
+
+```python
+from sub01_brain.brain_sim import Brain
+b = Brain(seed=0)                 # 214 regions on the real connectome, the fitted slow layer underneath
+b.run(30.0)                       # 30 s of simulated time, 10 ms samples x regions
+b.stimulate("visual", 8.0)        # a stimulus to a region group (decays with a 2 s time constant)
+print(b.state())                  # mean amplitude per network, phase synchrony
+```
+
+From a checkout: `git clone … && cd sub01-brain && pip install -e .` (or just `pip install -r requirements.txt`, the
+tests and the demo run without installing). Optional: `pip install -r requirements-torch.txt` (or
+`pip install torch --index-url https://download.pytorch.org/whl/cpu`) for the PyTorch network, the memory / Pong /
+choice-task code and the slow-layer fitting; `requirements-pipeline.txt` to rebuild the data from the raw MRI.
+`SUB01_BRAIN_DATA=/path/to/data` swaps the data for a directory with the same layout, for a connectome of your own.
 
 Set `OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1`: the matrices are 214 x 214, more BLAS threads only spin.
 

@@ -1,14 +1,14 @@
 """Where the data files live (one place to change; data/DATA.md says where each file comes from and its licence).
 
-Default: the `data/` directory next to this package in a checkout. Override with the environment variable
+Default: the `data/` directory inside this package (`sub01_brain/data`; the checkout keeps a `data` link at the top for the docs). Override with the environment variable
 SUB01_BRAIN_DATA (a directory with the same layout) when the package is installed elsewhere or the data is swapped,
 e.g. for a connectome of your own built with pipeline/build_connectome.py. Every loader takes an explicit path too.
 """
 import os
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent                # the checkout (sub01_brain/ and data/ side by side)
-DATA = Path(os.environ.get("SUB01_BRAIN_DATA") or ROOT / "data")
+ROOT = Path(__file__).resolve().parent.parent                # the checkout
+DATA = Path(os.environ.get("SUB01_BRAIN_DATA") or Path(__file__).resolve().parent / "data")   # ships inside the package (pip install works)
 
 MRI = DATA / "mri"                                           # derived from the person's scans: CC BY-SA 4.0 (data/mri/LICENSE)
 CONNECTOME = MRI / "connectome.npz"                         # 214 regions: streamline counts, fibre lengths (mm), names, centroids

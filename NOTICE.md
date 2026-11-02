@@ -1,5 +1,9 @@
 # Notice and attribution
 
+This licence covers the code (sub01_brain/, pipeline/, tests/) and the documentation. The data files under `data/` (`sub01_brain/data/`)
+are licensed separately, per directory: data/mri/LICENSE (CC BY-SA 4.0) and data/receptors/LICENSE (CC BY 4.0).
+NOTICE.md lists every third-party source and the attribution it requires.
+
 This repository contains a computer model of large-scale brain activity and the derived data it runs on. It is a
 model, not a mind: it does not think, feel or understand, it is not conscious and it is not the person whose scans
 it was built from. Code is © 2026 SUB-01 project, MIT License (see LICENSE). Derived data are licensed per

@@ -15,11 +15,17 @@ dependencies = ["numpy>=1.26", "scipy>=1.11"]
 torch = ["torch>=2.2", "aiohttp>=3.9"]
 test = ["pytest>=7"]
 
+[tool.setuptools]
+include-package-data = true
+
 [tool.setuptools.packages.find]
 include = ["sub01_brain*"]
 
-# The data files stay in data/ next to the package (23 MB; data/DATA.md). An installed copy finds them through the
-# SUB01_BRAIN_DATA environment variable (sub01_brain/paths.py); a checkout needs nothing.
+[tool.setuptools.package-data]
+sub01_brain = ["data/DATA.md", "data/*/LICENSE", "data/*/*.md", "data/*/*.npz", "data/*/*.json", "data/*/*.csv", "data/*/*/*", "data/*/*/*/*"]
+
+# The data files (23 MB; data/DATA.md) ship inside the package, so `pip install` is enough. SUB01_BRAIN_DATA overrides
+# them with a directory of the same layout (sub01_brain/paths.py). The top-level `data` is a link to sub01_brain/data.
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -21,7 +21,3 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ---
-
-This licence covers the code (sub01_brain/, pipeline/, tests/) and the documentation. The data files under data/
-are licensed separately, per directory: data/mri/LICENSE (CC BY-SA 4.0) and data/receptors/LICENSE (CC BY 4.0).
-NOTICE.md lists every third-party source and the attribution it requires.

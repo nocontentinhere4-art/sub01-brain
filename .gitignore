@@ -11,4 +11,6 @@ raw/
 out/
 data/analysis/
 data/cache/
+sub01_brain/data/analysis/
+sub01_brain/data/cache/
 .DS_Store
